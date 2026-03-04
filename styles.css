@@ -100,13 +100,14 @@ button, input, textarea { font-family: inherit; }
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: 1000;
   background: var(--nav-bg);
   box-shadow: var(--nav-shadow);
   transform: translateY(-100%);
   opacity: 0;
   visibility: hidden;
-  transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+  transition: transform 0.25s ease-out, opacity 0.25s ease-out, visibility 0.25s ease-out;
+  will-change: transform;
 }
 .sticky-header.is-visible {
   transform: translateY(0);
