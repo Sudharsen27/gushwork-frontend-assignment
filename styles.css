@@ -9,6 +9,7 @@
    1200px: 80px all sides
    1440px+: 100px all sides (1600px same) */
 :root {
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
   --content-max-width: 1240px;
   --fold-padding-x: 16px;
   --fold-padding-y: 48px;
@@ -70,7 +71,7 @@ body {
   overflow-x: hidden;
   width: 100%;
   min-width: 0; /* allow flex/grid children to shrink below content size */
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  font-family: var(--font-family);
   background: var(--bg-page);
   color: var(--text-dark);
   -webkit-font-smoothing: antialiased;
@@ -157,7 +158,7 @@ button, input, textarea { font-family: inherit; }
   color: #8B4513;
   line-height: 1.2;
 }
-.footer-logo__mangalam { font-size: 1.1rem; font-weight: 700; font-family: Georgia, 'Times New Roman', serif; }
+.footer-logo__mangalam { font-size: 1.1rem; font-weight: 700; }
 .footer-logo__hdpe { font-size: 0.7rem; font-weight: 500; }
 
 /* ---- Main nav (first fold) ---- */
