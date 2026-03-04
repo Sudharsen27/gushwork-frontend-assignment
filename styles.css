@@ -1022,15 +1022,16 @@ button, input, textarea { font-family: inherit; }
   overflow: hidden;
   box-shadow: 0 2px 12px rgba(0,0,0,0.08);
 }
-.process-carousel__viewport { overflow: hidden; }
-.process-carousel__track { display: flex; transition: transform 0.35s ease; }
-/* Process carousel - aspect ratio 4:3 */
+.process-carousel__viewport { overflow: hidden; width: 100%; }
+.process-carousel__track { display: flex; width: 800%; transition: transform 0.35s ease; }
+/* Process carousel - 8 steps, one image per step, aspect ratio 4:3 */
 .process-carousel__img {
-  min-width: 100%;
-  width: 100%;
+  flex: 0 0 12.5%;
+  width: 12.5%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   cursor: zoom-in;
+  display: block;
 }
 .process-carousel-prev { left: 8px; }
 .process-carousel-next { right: 8px; }

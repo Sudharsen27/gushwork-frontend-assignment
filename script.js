@@ -96,6 +96,51 @@
     }
   }
 
+  // ---- Advanced HDPE Process tabs (content + image per step) ----
+  var processSection = document.getElementById('process');
+  if (processSection) {
+    var processTabs = processSection.querySelectorAll('.process-tab');
+    var processTitle = processSection.querySelector('.js-process-title');
+    var processBody = processSection.querySelector('.js-process-body');
+    var processList = processSection.querySelector('.js-process-list');
+    var processTrack = processSection.querySelector('.process-carousel__track');
+    var processImgs = processSection.querySelectorAll('.process-carousel__img');
+
+    var PROCESS_STEPS = [
+      { title: 'High-Grade Raw Material Selection', body: 'PE100 grade HDPE resin with optimal molecular weight distribution ensures consistent pipe quality. Raw material is tested for density, melt index, and certification compliance before use.', list: ['PE100 grade material', 'Optimal molecular weight distribution', 'Certified resin supply'] },
+      { title: 'Precision Extrusion', body: 'Molten HDPE is extruded through a die to form the pipe profile. State-of-the-art extruders maintain precise temperature and pressure for uniform wall thickness and diameter.', list: ['Twin-screw extrusion', 'Precise temperature zones', 'Uniform melt flow'] },
+      { title: 'Controlled Cooling', body: 'Pipes pass through vacuum calibration and cooling tanks to set dimensions and prevent deformation. Water temperature and flow are controlled for optimal crystallisation.', list: ['Vacuum calibration', 'Water bath cooling', 'Dimensional stability'] },
+      { title: 'Precision Sizing', body: 'Vacuum sizing tanks ensure precise outer diameter while internal pressure maintains perfect roundness and wall thickness uniformity across the full length.', list: ['OD and wall control', 'Roundness tolerance', 'SDR compliance'] },
+      { title: 'Quality Control & Inspection', body: 'Every pipe is inspected for dimensions, surface defects, and mechanical properties. Testing includes hydrostatic pressure, impact resistance, and material verification.', list: ['Dimensional checks', 'Pressure testing', 'Visual inspection'] },
+      { title: 'Pipe Marking & Identification', body: 'Pipes are marked with standard identification: manufacturer, material grade, size, pressure rating, and production batch for traceability.', list: ['Continuous line marking', 'Batch traceability', 'Standards compliance'] },
+      { title: 'Precision Cutting', body: 'Pipes are cut to specified lengths using automated saws. Length tolerance and end quality are controlled for easy jointing during installation.', list: ['Length accuracy', 'Square cut ends', 'Handling safety'] },
+      { title: 'Packaging & Dispatch', body: 'Pipes are bundled, labelled, and packaged for safe transport. Storage and handling guidelines are provided to maintain quality until installation.', list: ['Bundled packaging', 'Protection from UV and damage', 'Dispatch documentation'] }
+    ];
+
+    function setProcessStep(index) {
+      var step = PROCESS_STEPS[index];
+      if (!step) return;
+      processTabs.forEach(function (tab, i) {
+        tab.classList.toggle('active', i === index);
+      });
+      if (processTitle) processTitle.textContent = step.title;
+      if (processBody) processBody.textContent = step.body;
+      if (processList) {
+        processList.innerHTML = step.list.map(function (item) { return '<li>' + item + '</li>'; }).join('');
+      }
+      if (processTrack && processImgs.length) {
+        var pct = (index / processImgs.length) * 100;
+        processTrack.style.transform = 'translateX(-' + pct + '%)';
+      }
+    }
+
+    processTabs.forEach(function (tab, i) {
+      tab.addEventListener('click', function () { setProcessStep(i); });
+    });
+
+    setProcessStep(0);
+  }
+
   // ---- Datasheet / Catalogue download modal ----
   var modal = document.getElementById('datasheet-modal');
   var openBtn = document.getElementById('js-open-datasheet-modal');
