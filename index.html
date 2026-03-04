@@ -55,13 +55,19 @@
           <div class="product-carousel__viewport">
             <div class="product-carousel__track">
               <div class="product-carousel__slide">
-                <img src="https://placehold.co/800x600/e8e8e8/666?text=Product+Image+1" alt="Premium HDPE Pipes - Industrial application" class="product-carousel__img js-zoom-image" />
+                <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&h=600&fit=crop" alt="Premium HDPE Pipes - Industrial application" class="product-carousel__img js-zoom-image" />
               </div>
               <div class="product-carousel__slide">
-                <img src="https://placehold.co/800x600/e0e0e0/666?text=Product+Image+2" alt="HDPE Pipes detail" class="product-carousel__img js-zoom-image" />
+                <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&h=600&fit=crop" alt="HDPE Pipes - manufacturing and quality" class="product-carousel__img js-zoom-image" />
               </div>
               <div class="product-carousel__slide">
-                <img src="https://placehold.co/800x600/d8d8d8/666?text=Product+Image+3" alt="HDPE Coils" class="product-carousel__img js-zoom-image" />
+                <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&h=600&fit=crop" alt="HDPE Pipes and coils for infrastructure" class="product-carousel__img js-zoom-image" />
+              </div>
+              <div class="product-carousel__slide">
+                <img src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=800&h=600&fit=crop" alt="HDPE pipe fittings and connections" class="product-carousel__img js-zoom-image" />
+              </div>
+              <div class="product-carousel__slide">
+                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop" alt="HDPE Pipes - installation and inspection" class="product-carousel__img js-zoom-image" />
               </div>
             </div>
           </div>
@@ -107,15 +113,59 @@
     </section>
 
     <!-- Trusted by -->
-    <section class="trusted-by container">
-      <p class="trusted-by__title">Trusted by Hundreds of Companies Globally</p>
-      <div class="trusted-by__logos">
-        <div class="trusted-logo">EUROFLEX<br><small>WE CREATE SOLUTIONS</small></div>
-        <div class="trusted-logo">EUROFLEX<br><small>WE CREATE SOLUTIONS</small></div>
-        <div class="trusted-logo">EUROFLEX<br><small>WE CREATE SOLUTIONS</small></div>
-        <div class="trusted-logo">EUROFLEX<br><small>WE CREATE SOLUTIONS</small></div>
-        <div class="trusted-logo">EUROFLEX<br><small>WE CREATE SOLUTIONS</small></div>
-        <div class="trusted-logo">EUROFLEX<br><small>WE CREATE SOLUTIONS</small></div>
+    <section class="trusted-by">
+      <div class="container">
+        <p class="trusted-by__title">Trusted by Hundreds of Companies Globally</p>
+        <div class="trusted-by__logos">
+          <div class="trusted-logo">
+            <div class="trusted-logo__brand">
+              <span class="trusted-logo__word">EUR</span>
+              <span class="trusted-logo__o" aria-hidden="true"></span>
+              <span class="trusted-logo__word">FLEX</span><span class="trusted-logo__reg">®</span>
+            </div>
+            <span class="trusted-logo__tagline">WE CREATE SOLUTIONS</span>
+          </div>
+          <div class="trusted-logo">
+            <div class="trusted-logo__brand">
+              <span class="trusted-logo__word">EUR</span>
+              <span class="trusted-logo__o" aria-hidden="true"></span>
+              <span class="trusted-logo__word">FLEX</span><span class="trusted-logo__reg">®</span>
+            </div>
+            <span class="trusted-logo__tagline">WE CREATE SOLUTIONS</span>
+          </div>
+          <div class="trusted-logo">
+            <div class="trusted-logo__brand">
+              <span class="trusted-logo__word">EUR</span>
+              <span class="trusted-logo__o" aria-hidden="true"></span>
+              <span class="trusted-logo__word">FLEX</span><span class="trusted-logo__reg">®</span>
+            </div>
+            <span class="trusted-logo__tagline">WE CREATE SOLUTIONS</span>
+          </div>
+          <div class="trusted-logo">
+            <div class="trusted-logo__brand">
+              <span class="trusted-logo__word">EUR</span>
+              <span class="trusted-logo__o" aria-hidden="true"></span>
+              <span class="trusted-logo__word">FLEX</span><span class="trusted-logo__reg">®</span>
+            </div>
+            <span class="trusted-logo__tagline">WE CREATE SOLUTIONS</span>
+          </div>
+          <div class="trusted-logo">
+            <div class="trusted-logo__brand">
+              <span class="trusted-logo__word">EUR</span>
+              <span class="trusted-logo__o" aria-hidden="true"></span>
+              <span class="trusted-logo__word">FLEX</span><span class="trusted-logo__reg">®</span>
+            </div>
+            <span class="trusted-logo__tagline">WE CREATE SOLUTIONS</span>
+          </div>
+          <div class="trusted-logo">
+            <div class="trusted-logo__brand">
+              <span class="trusted-logo__word">EUR</span>
+              <span class="trusted-logo__o" aria-hidden="true"></span>
+              <span class="trusted-logo__word">FLEX</span><span class="trusted-logo__reg">®</span>
+            </div>
+            <span class="trusted-logo__tagline">WE CREATE SOLUTIONS</span>
+          </div>
+        </div>
       </div>
     </section>
   </div>
@@ -151,7 +201,7 @@
         </table>
       </div>
       <div class="specs-actions">
-        <button type="button" class="btn btn--outline-light">
+        <button type="button" class="btn btn--outline-light" id="js-open-datasheet-modal" aria-haspopup="dialog" aria-expanded="false">
           <span class="btn-icon">↓</span> Download Full Technical Datasheet
         </button>
       </div>
@@ -594,6 +644,27 @@
       </div>
     </div>
   </footer>
+
+  <!-- Datasheet / Catalogue download modal -->
+  <div class="modal-overlay" id="datasheet-modal" aria-hidden="true" role="dialog" aria-labelledby="datasheet-modal-title" aria-modal="true">
+    <div class="modal modal--datasheet">
+      <button type="button" class="modal__close" id="js-close-datasheet-modal" aria-label="Close">×</button>
+      <h2 class="modal__title" id="datasheet-modal-title">Let us email the entire catalogue to you</h2>
+      <form class="modal__form" id="datasheet-form" novalidate>
+        <div class="modal__field">
+          <label for="datasheet-email">Your Email <span class="modal__required">*</span></label>
+          <input type="email" id="datasheet-email" name="email" placeholder="example@gmail.com" required />
+        </div>
+        <div class="modal__field">
+          <label for="datasheet-contact">Your Contact (Optional)</label>
+          <input type="tel" id="datasheet-contact" name="contact" placeholder="+91-0000000000" />
+        </div>
+        <div class="modal__actions">
+          <button type="submit" class="btn btn--modal">Download Brochure</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
