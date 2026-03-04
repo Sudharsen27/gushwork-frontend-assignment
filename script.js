@@ -1,6 +1,47 @@
 (function () {
   'use strict';
 
+  // ---- Product image carousel (arrows + thumbnails) ----
+  var productCarousel = document.querySelector('.product-section .product-carousel');
+  if (productCarousel) {
+    var track = productCarousel.querySelector('.product-carousel__track');
+    var slides = productCarousel.querySelectorAll('.product-carousel__slide');
+    var prevBtn = productCarousel.querySelector('.carousel-arrow--prev');
+    var nextBtn = productCarousel.querySelector('.carousel-arrow--next');
+    var thumbnailsWrap = productCarousel.closest('.product-section__gallery').querySelector('.product-thumbnails');
+    var thumbs = thumbnailsWrap ? thumbnailsWrap.querySelectorAll('.product-thumb') : [];
+    var total = slides.length;
+    var currentIndex = 0;
+
+    function updateCarousel() {
+      var percent = total > 0 ? currentIndex * (100 / total) : 0;
+      track.style.transform = 'translateX(-' + percent + '%)';
+      thumbs.forEach(function (thumb, i) {
+        thumb.classList.toggle('active', i === currentIndex);
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function () {
+        currentIndex = (currentIndex + 1) % total;
+        updateCarousel();
+      });
+    }
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function () {
+        currentIndex = currentIndex === 0 ? total - 1 : currentIndex - 1;
+        updateCarousel();
+      });
+    }
+    thumbs.forEach(function (thumb, i) {
+      thumb.addEventListener('click', function () {
+        currentIndex = i;
+        updateCarousel();
+      });
+    });
+    updateCarousel();
+  }
+
   // ---- Datasheet / Catalogue download modal ----
   var modal = document.getElementById('datasheet-modal');
   var openBtn = document.getElementById('js-open-datasheet-modal');

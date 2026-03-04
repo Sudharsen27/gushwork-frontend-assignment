@@ -262,17 +262,25 @@ button, input, textarea { font-family: inherit; }
   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
   background: var(--bg-card);
 }
-.product-carousel__viewport { overflow: hidden; }
+.product-carousel__viewport {
+  overflow: hidden;
+  width: 100%;
+}
 .product-carousel__track {
   display: flex;
+  width: 500%;
   transition: transform 0.35s ease;
 }
-.product-carousel__slide { min-width: 100%; }
+.product-carousel__slide {
+  flex: 0 0 20%;
+  width: 20%;
+}
 .product-carousel__img {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   cursor: zoom-in;
+  display: block;
 }
 .carousel-arrow {
   position: absolute;
