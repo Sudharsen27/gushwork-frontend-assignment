@@ -181,7 +181,7 @@
 
   var processData = [
     { title: 'High-Grade Raw Material Selection', body: 'Vacuum sizing tanks ensure precise outer diameter while internal pressure maintains perfect roundness and wall thickness uniformity.', list: ['PE100 grade material', 'Optimal molecular weight distribution'] },
-    { title: 'Extrusion', body: 'Molten HDPE is extruded through a die to form the pipe profile with controlled dimensions and density.', list: ['Consistent melt flow', 'Uniform wall thickness'] },
+    { title: 'Extrusion', body: 'Molten HDPE is extruded through a die to form the pipe profile with controlled dimensions and density.', list: ['Consistent melt flow', 'Uniform wall thickness for which is given'] },
     { title: 'Cooling', body: 'Pipes are cooled in water baths to stabilize dimensions and prevent deformation.', list: ['Gradual cooling', 'Stress relief'] },
     { title: 'Sizing', body: 'Vacuum sizing ensures precise outer diameter and roundness.', list: ['Calibrated sizing', 'Tolerance control'] },
     { title: 'Quality Control', body: 'Every pipe is tested for dimensions, pressure rating, and material integrity.', list: ['Dimensional checks', 'Hydrostatic testing'] },
@@ -189,6 +189,19 @@
     { title: 'Cutting', body: 'Pipes are cut to required lengths with precision saws.', list: ['Accurate lengths', 'Clean ends'] },
     { title: 'Packaging', body: 'Pipes are bundled and packaged for safe transport and storage.', list: ['Bundled coils', 'Protective wrapping'] }
   ];
+
+  var processCarouselTrack = document.querySelector('.process-carousel__track');
+  var processCarouselImgs = document.querySelectorAll('.process-carousel__track .process-carousel__img');
+  var procIndex = 0;
+  function updateProcessCarousel() {
+    if (!processCarouselTrack) return;
+    var w = processCarouselTrack.parentElement ? processCarouselTrack.parentElement.offsetWidth : 0;
+    processCarouselTrack.style.transform = 'translateX(-' + procIndex * w + 'px)';
+  }
+  function goToProcessStep(step) {
+    procIndex = Math.max(0, Math.min(step, processCarouselImgs.length - 1));
+    updateProcessCarousel();
+  }
 
   if (processTabs.length && processTitle && processBody && processList) {
     processTabs.forEach(function (tab) {
@@ -202,6 +215,7 @@
           processBody.textContent = d.body;
           processList.innerHTML = d.list.map(function (item) { return '<li>' + item + '</li>'; }).join('');
         }
+        goToProcessStep(step);
       });
     });
   }
@@ -232,16 +246,9 @@
   });
 
   // ----- Process carousel (small gallery in process section) -----
-  var processCarouselTrack = document.querySelector('.process-carousel__track');
-  var processCarouselImgs = document.querySelectorAll('.process-carousel__track .process-carousel__img');
   var processPrev = document.querySelector('.process-carousel-prev');
   var processNext = document.querySelector('.process-carousel-next');
   if (processCarouselTrack && processCarouselImgs.length > 1) {
-    var procIndex = 0;
-    function updateProcessCarousel() {
-      var w = processCarouselTrack.parentElement ? processCarouselTrack.parentElement.offsetWidth : 0;
-      processCarouselTrack.style.transform = 'translateX(-' + procIndex * w + 'px)';
-    }
     if (processPrev) processPrev.addEventListener('click', function () {
       procIndex = (procIndex - 1 + processCarouselImgs.length) % processCarouselImgs.length;
       updateProcessCarousel();
@@ -251,6 +258,7 @@
       updateProcessCarousel();
     });
     window.addEventListener('resize', updateProcessCarousel);
+    updateProcessCarousel();
   }
 
   // ----- Catalogue form (prevent default for demo) -----
