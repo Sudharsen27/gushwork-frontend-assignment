@@ -1361,7 +1361,7 @@ button, input, textarea { font-family: inherit; }
   align-items: center;
   justify-content: center;
 }
-.footer-contact__icon svg { width: 14px; height: auto; max-height: 18px; }
+.footer-contact__icon svg { width: 14px; height: 14px; display: block; flex-shrink: 0; shape-rendering: geometricPrecision; }
 .footer-contact__link {
   color: inherit;
   text-decoration: none;
