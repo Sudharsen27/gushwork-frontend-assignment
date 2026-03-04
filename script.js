@@ -42,6 +42,29 @@
     updateCarousel();
   }
 
+  // ---- FAQ accordion (click to show/hide answer) ----
+  var accordion = document.querySelector('.accordion');
+  if (accordion) {
+    var items = accordion.querySelectorAll('.accordion__item');
+    items.forEach(function (item) {
+      var trigger = item.querySelector('.accordion__trigger');
+      var panel = item.querySelector('.accordion__panel');
+      if (!trigger || !panel) return;
+      trigger.addEventListener('click', function () {
+        var isOpen = item.classList.contains('accordion__item--open');
+        items.forEach(function (other) {
+          other.classList.remove('accordion__item--open');
+          var t = other.querySelector('.accordion__trigger');
+          if (t) t.setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('accordion__item--open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  }
+
   // ---- Versatile Applications carousel (arrows + scroll) ----
   var appSection = document.getElementById('applications');
   if (appSection) {
