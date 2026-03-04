@@ -246,7 +246,7 @@
         </article>
       </div>
       <div class="section-cta">
-        <a href="#contact" class="btn btn--primary">Request a Quote</a>
+        <button type="button" class="btn btn--primary" id="js-open-callback-modal" aria-haspopup="dialog" aria-expanded="false">Request a Quote</button>
       </div>
     </div>
   </section>
@@ -644,6 +644,43 @@
       </div>
     </div>
   </footer>
+
+  <!-- Request a call back modal -->
+  <div class="modal-overlay" id="callback-modal" aria-hidden="true" role="dialog" aria-labelledby="callback-modal-title" aria-modal="true">
+    <div class="modal modal--callback">
+      <button type="button" class="modal__close js-close-callback-modal" aria-label="Close">×</button>
+      <h2 class="modal__title" id="callback-modal-title">Request a call back</h2>
+      <form class="modal__form callback-form" id="callback-form" novalidate>
+        <div class="modal__field">
+          <input type="text" id="callback-name" name="name" placeholder="Full Name" required />
+        </div>
+        <div class="modal__field">
+          <input type="text" id="callback-company" name="company" placeholder="Company Name" required />
+        </div>
+        <div class="modal__field">
+          <input type="email" id="callback-email" name="email" placeholder="Email Address" required />
+        </div>
+        <div class="modal__field modal__field--phone">
+          <div class="modal__phone-prefix">
+            <span class="modal__prefix-code">+91</span>
+            <span class="modal__phone-chevron">▼</span>
+          </div>
+        
+          <input
+            type="tel"
+            id="callback-phone"
+            name="phone"
+            placeholder="7003026616"
+            class="modal__input-phone"
+            required
+          />
+        </div>
+        <div class="modal__actions">
+          <button type="submit" class="btn btn--callback">Submit Form</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <!-- Datasheet / Catalogue download modal -->
   <div class="modal-overlay" id="datasheet-modal" aria-hidden="true" role="dialog" aria-labelledby="datasheet-modal-title" aria-modal="true">

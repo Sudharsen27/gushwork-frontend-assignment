@@ -42,6 +42,60 @@
     updateCarousel();
   }
 
+  // ---- Versatile Applications carousel (arrows + scroll) ----
+  var appSection = document.getElementById('applications');
+  if (appSection) {
+    var appViewport = appSection.querySelector('.applications-carousel__viewport');
+    var appTrack = appSection.querySelector('.applications-carousel__track');
+    var appCards = appSection.querySelectorAll('.app-card');
+    var appPrev = appSection.querySelector('.js-app-prev');
+    var appNext = appSection.querySelector('.js-app-next');
+
+    if (appViewport && appTrack && appCards.length > 0) {
+      var appCurrentOffset = 0;
+
+      function getAppCardWidth() {
+        var first = appCards[0];
+        if (!first) return 340;
+        var gapStr = window.getComputedStyle(appTrack).gap;
+        var gap = 20;
+        if (gapStr) {
+          var num = parseFloat(gapStr);
+          if (gapStr.indexOf('rem') !== -1) gap = num * 16;
+          else if (!isNaN(num)) gap = num;
+        }
+        return first.offsetWidth + gap;
+      }
+
+      function getAppMaxScroll() {
+        var vw = appViewport.offsetWidth;
+        var trackWidth = appTrack.scrollWidth;
+        return Math.max(0, trackWidth - vw);
+      }
+
+      function updateAppCarousel() {
+        var maxScroll = getAppMaxScroll();
+        appCurrentOffset = Math.max(-maxScroll, Math.min(0, appCurrentOffset));
+        appTrack.style.transform = 'translateX(' + appCurrentOffset + 'px)';
+      }
+
+      if (appNext) {
+        appNext.addEventListener('click', function () {
+          appCurrentOffset -= getAppCardWidth();
+          updateAppCarousel();
+        });
+      }
+      if (appPrev) {
+        appPrev.addEventListener('click', function () {
+          appCurrentOffset += getAppCardWidth();
+          updateAppCarousel();
+        });
+      }
+      window.addEventListener('resize', updateAppCarousel);
+      updateAppCarousel();
+    }
+  }
+
   // ---- Datasheet / Catalogue download modal ----
   var modal = document.getElementById('datasheet-modal');
   var openBtn = document.getElementById('js-open-datasheet-modal');
@@ -97,6 +151,59 @@
       // Here you could send the form data to a server
       closeModal();
       form.reset();
+    });
+  }
+
+  // ---- Request a call back modal ----
+  var callbackModal = document.getElementById('callback-modal');
+  var callbackOpenBtn = document.getElementById('js-open-callback-modal');
+  var callbackCloseBtn = document.querySelector('.js-close-callback-modal');
+  var callbackForm = document.getElementById('callback-form');
+
+  function openCallbackModal() {
+    if (!callbackModal) return;
+    callbackModal.classList.add('is-visible');
+    callbackModal.setAttribute('aria-hidden', 'false');
+    if (callbackOpenBtn) callbackOpenBtn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeCallbackModal() {
+    if (!callbackModal) return;
+    callbackModal.classList.remove('is-visible');
+    callbackModal.setAttribute('aria-hidden', 'true');
+    if (callbackOpenBtn) callbackOpenBtn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  if (callbackOpenBtn) {
+    callbackOpenBtn.addEventListener('click', openCallbackModal);
+  }
+
+  if (callbackCloseBtn) {
+    callbackCloseBtn.addEventListener('click', closeCallbackModal);
+  }
+
+  if (callbackModal) {
+    callbackModal.addEventListener('click', function (e) {
+      if (e.target === callbackModal) closeCallbackModal();
+    });
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      if (callbackModal && callbackModal.classList.contains('is-visible')) closeCallbackModal();
+      else if (modal && modal.classList.contains('is-visible')) closeModal();
+    }
+  });
+
+  if (callbackForm) {
+    callbackForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var nameEl = document.getElementById('callback-name');
+      if (nameEl && !nameEl.value.trim()) { nameEl.focus(); return; }
+      closeCallbackModal();
+      callbackForm.reset();
     });
   }
 })();
